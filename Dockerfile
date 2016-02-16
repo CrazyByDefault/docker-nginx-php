@@ -10,6 +10,10 @@ RUN apt-get -y update &&\
   PACKAGES="nginx php5-fpm php5-cli php5-mcrypt php5-curl php5-mysql php5-sqlite" &&\
   apt-get -y update &&\
   apt-get install -y $PACKAGES &&\
+  php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php &&\
+  php composer-setup.php --install-dir=/bin --filename=composer &&\
+  php -r "unlink('composer-setup.php');" &&\
+  chmod +x /bin/composer &&\
   apt-get remove --purge -y software-properties-common &&\
   apt-get autoremove -y &&\
   apt-get clean &&\
