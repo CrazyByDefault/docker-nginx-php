@@ -11,6 +11,11 @@ The container contains the following packages:
   * Curl
   * MySQL
   * SQLite
+* `Composer` (1.0-dev)
+
+## Images
+
+* `latest`, `0.1`, `0.1.2` ([Dockerfile](./Dockerfile))
 
 ## Usage
 Pull the docker image from Docker hub as:
