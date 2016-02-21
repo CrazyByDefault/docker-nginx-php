@@ -1,4 +1,6 @@
 # docker-nginx-php
+[![ImageLayers Size](https://img.shields.io/imagelayers/image-size/activatedgeek/nginx-php/latest.svg)](https://hub.docker.com/r/activatedgeek/nginx-php/)
+
 This is a base image to run PHP based applications via the
 PHP-FPM parser and server via Nginx as the proxy.
 
