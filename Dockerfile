@@ -23,7 +23,7 @@ RUN apt-get -y update &&\
 
 ADD ./nginx/nginx.conf /etc/nginx/nginx.conf
 ADD ./nginx/example.conf /etc/nginx/sites-available/default
-ADD ./scripts/start.sh /start.sh
+ADD ./scripts/docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN php5enmod mcrypt &&\
   rm -rf /etc/nginx/conf.d/* &&\
@@ -39,4 +39,4 @@ VOLUME /app
 EXPOSE 80
 EXPOSE 443
 
-CMD ["/bin/bash", "start.sh"]
+CMD ["/bin/bash", "docker-entrypoint.sh"]
