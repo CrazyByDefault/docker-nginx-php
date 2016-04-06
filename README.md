@@ -1,5 +1,7 @@
 # docker-nginx-php
-[![ImageLayers Size](https://img.shields.io/imagelayers/image-size/activatedgeek/nginx-php/latest.svg)](https://hub.docker.com/r/activatedgeek/nginx-php/)
+
+| [![Build Status](https://travis-ci.org/activatedgeek/docker-nginx-php.svg?branch=master)](https://travis-ci.org/activatedgeek/docker-nginx-php) | [![](https://badge.imagelayers.io/activatedgeek/nginx-php.svg)](https://hub.docker.com/r/activatedgeek/nginx-php) |
+|:-:|:-:|
 
 This is a base image to run PHP based applications via the
 PHP-FPM parser and server via Nginx as the proxy.
@@ -17,7 +19,7 @@ The container contains the following packages:
 
 ## Images
 
-* `latest`, `0.1`, `0.1.4` ([Dockerfile](./Dockerfile))
+* `latest`, `0.1`, `0.1.5` ([Dockerfile](./Dockerfile))
 
 ## Usage
 Pull the docker image from Docker hub as:
