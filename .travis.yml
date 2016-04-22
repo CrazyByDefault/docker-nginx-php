@@ -10,7 +10,7 @@ script:
   # build latest image always
   - docker build -t $DOCKER_REPO_SLUG:latest .
   # build the image for current branch
-  - docker build -t $DOCKER_REPO_SLUG:$TRAVIS_BRANCH .
+  - if [[ $TRAVIS_TAG = $TRAVIS_BRANCH ]]; then docker build -t $DOCKER_REPO_SLUG:$TRAVIS_TAG . ; else true ; fi
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
