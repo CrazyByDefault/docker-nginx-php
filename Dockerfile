@@ -10,10 +10,7 @@ ADD ./nginx/nginx.conf /etc/nginx/nginx.conf
 ADD ./nginx/example.conf /etc/nginx/conf.d/example.conf
 ADD ./conf/supervisord.conf /etc/supervisord.conf
 
-RUN mkdir -p /app &&\
-  chmod -R 755 /app /etc/nginx/conf.d &&\
-  # use sockets as they are more memory efficient
-  sed -i "s/^listen.*/listen = \/var\/run\/php5\-fpm.sock/" /etc/php/php-fpm.conf
+RUN mkdir -p /app && chmod -R 755 /app /etc/nginx/conf.d
 
 EXPOSE 80 443
 
