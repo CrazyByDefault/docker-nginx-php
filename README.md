@@ -13,7 +13,7 @@ The container contains the following packages:
 
 ## Images
 
-* `latest`, `0.2`, `0.2.0` ([Dockerfile](./Dockerfile))
+* `latest`, `0.2`, `0.2.1` ([Dockerfile](./Dockerfile))
 * `0.1`, `0.1.6`
 
 ## Usage
