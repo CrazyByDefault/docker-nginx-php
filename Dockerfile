@@ -1,42 +1,20 @@
-FROM ubuntu:14.04
+FROM activatedgeek/php:latest
 
 MAINTAINER Sanyam Kapoor "1sanyamkapoor@gmail.com"
 
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get -y update &&\
-  apt-get install -y software-properties-common &&\
-  add-apt-repository ppa:nginx/stable &&\
-  PACKAGES="nginx php5-fpm php5-cli php5-mcrypt php5-curl php5-mysql php5-sqlite" &&\
-  apt-get -y update &&\
-  apt-get install -y $PACKAGES &&\
-  php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php &&\
-  php composer-setup.php --install-dir=/bin --filename=composer &&\
-  php -r "unlink('composer-setup.php');" &&\
-  chmod +x /bin/composer &&\
-  apt-get remove --purge -y software-properties-common &&\
-  apt-get autoremove -y &&\
-  apt-get clean &&\
-  apt-get autoclean &&\
-  rm -rf /var/lib/apt/lists/* &&\
-  rm -rf /usr/share/man/*
+RUN apk update &&\
+  apk add --update nginx supervisor &&\
+  rm -rf /var/cache/apk/*
 
 ADD ./nginx/nginx.conf /etc/nginx/nginx.conf
-ADD ./nginx/example.conf /etc/nginx/sites-available/default
-ADD ./scripts/docker-entrypoint.sh /docker-entrypoint.sh
+ADD ./nginx/example.conf /etc/nginx/conf.d/example.conf
+ADD ./conf/supervisord.conf /etc/supervisord.conf
 
-RUN php5enmod mcrypt &&\
-  rm -rf /etc/nginx/conf.d/* &&\
-  mkdir -p /etc/nginx/ssl &&\
-  mkdir -p /app &&\
-  chmod -R 755 /app &&\
-  chmod 755 /etc/nginx/sites-available/default &&\
-  ln -s -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+RUN mkdir -p /app &&\
+  chmod -R 755 /app /etc/nginx/conf.d &&\
+  # use sockets as they are more memory efficient
+  sed -i "s/^listen.*/listen = \/var\/run\/php5\-fpm.sock/" /etc/php/php-fpm.conf
 
-VOLUME /etc/nginx/ssl
-VOLUME /app
+EXPOSE 80 443
 
-EXPOSE 80
-EXPOSE 443
-
-CMD ["/bin/bash", "docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/supervisord"]

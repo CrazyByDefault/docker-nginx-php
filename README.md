@@ -3,23 +3,18 @@
 | [![Build Status](https://travis-ci.org/activatedgeek/docker-nginx-php.svg?branch=master)](https://travis-ci.org/activatedgeek/docker-nginx-php) | [![](https://imagelayers.io/badge/activatedgeek/nginx-php:latest.svg)](https://imagelayers.io/?images=activatedgeek/nginx-php:latest 'Get your own badge on imagelayers.io') |
 |:-:|:-:|
 
-This is a base image to run PHP based applications via the
-PHP-FPM parser and server via Nginx as the proxy.
+This is an Alpine-based image to run PHP applications via the
+PHP-FPM parser and served via Nginx.
 
 The container contains the following packages:
-* `Nginx` (1.8)
-* `PHP` (5.5) with modules,
-  * FPM
-  * CLI
-  * MCrypt
-  * Curl
-  * MySQL
-  * SQLite
-* `Composer` (1.0-dev)
+* `Nginx` (1.8+)
+* `PHP` (5.6+) with modules from,
+* `Composer` (1.1+)
 
 ## Images
 
-* `latest`, `0.1`, `0.1.6` ([Dockerfile](./Dockerfile))
+* `latest`, `0.2`, `0.2.0` ([Dockerfile](./Dockerfile))
+* `0.1`, `0.1.6`
 
 ## Usage
 Pull the docker image from Docker hub as:
@@ -75,7 +70,7 @@ VOLUME /app
 
 EXPOSE 80
 
-CMD ["/bin/bash", "start.sh"]
+ENTRYPOINT ["/usr/bin/supervisord"]
 ```
 
 ## Build
