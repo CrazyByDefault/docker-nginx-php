@@ -1,6 +1,6 @@
-FROM activatedgeek/php:latest
+FROM crazybydefault/php:latest
 
-MAINTAINER Sanyam Kapoor "1sanyamkapoor@gmail.com"
+MAINTAINER Shashank Varanasi "sasi8998vv@gmail.com"
 
 RUN apk update &&\
   apk add --update nginx supervisor &&\

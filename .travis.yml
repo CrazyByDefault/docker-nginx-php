@@ -4,7 +4,7 @@ services:
   - docker
 
 env:
-  - DOCKER_REPO_SLUG=activatedgeek/nginx-php
+  - DOCKER_REPO_SLUG=crazybydefault/nginx-php
 
 script:
   # build latest image always
